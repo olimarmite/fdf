@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/09 17:23:03 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/08 00:02:07 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/09 17:24:10 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef FDF_H
+# define FDF_H
 
-int main(void)
+# include "utils/utils.h"
+
+typedef struct s_point
 {
-     *f = fopen("", "r");
-    if (f == NULL) {
-        perror("fopen() failed");
-    } else {
-        fclose(f);
-    }
-}
+	t_vect3d	pos;
+	int			color;
+}	t_point;
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	int		max_altitude;
+	int		min_altitude;
+	t_point	**content;
+}	t_map;
+
+#endif
