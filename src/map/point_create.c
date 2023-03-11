@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:58:59 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/11 20:59:00 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/11 21:38:54 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ t_point	point_create(int altitude, int color, int x, int y)
 	point.color = color;
 	point.x = x;
 	point.y = y;
-
 	return (point);
 }

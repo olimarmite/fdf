@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:19:28 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/11 21:26:07 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/11 21:40:01 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@
 void	map_destroy(t_map *map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-
 	while (i < map->height)
 	{
 		free(map->content[i]);
