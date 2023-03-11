@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   exception_management.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 00:02:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/11 20:39:40 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/09 22:02:06 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/09 22:50:09 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef EXCEPTION_MANAGEMENT_H
+# define EXCEPTION_MANAGEMENT_H
 
-# include "utils/utils.h"
-# include "map/map.h"
+# include <errno.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+
+void	ft_fatal_error(char *error_msg, int set_errno);
 
 #endif

@@ -9,6 +9,12 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRCS = \
+	$(addprefix map/,				\
+		map_line_add.c				\
+		map_print.c					\
+		point_create.c				\
+		map_destroy.c				\
+	)								\
 	$(addprefix utils/,				\
 		$(addprefix split/,			\
 			ft_split.c				\

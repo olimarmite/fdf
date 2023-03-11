@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   point_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 00:02:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/11 20:39:40 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/11 20:58:59 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/11 20:59:00 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "map.h"
 
-# include "utils/utils.h"
-# include "map/map.h"
+t_point	point_create(int altitude, int color, int x, int y)
+{
+	t_point	point;
 
-#endif
+	point.altitude = altitude;
+	point.color = color;
+	point.x = x;
+	point.y = y;
+
+	return (point);
+}
