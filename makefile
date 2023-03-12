@@ -1,12 +1,17 @@
-NAME = test
+NAME = fdf
+TEST_NAME = unit_test
 
 MLX_DIR = mlx_linux
 MLX_FILE = libmlx.a
 
 MLX_LIB = $(MLX_DIR)/$(MLX_FILE)
 
-SRC_DIR = src
-OBJ_DIR = obj
+OBJ_COMMON_DIR	= obj
+SRC_DIR			= src
+OBJ_DIR			= $(OBJ_COMMON_DIR)/fdf
+
+TEST_SRC_DIR 	= tests
+TEST_OBJ_DIR 	= $(OBJ_COMMON_DIR)/tests
 
 SRCS = \
 	$(addprefix map/,				\
@@ -14,6 +19,9 @@ SRCS = \
 		map_print.c					\
 		point_create.c				\
 		map_destroy.c				\
+	)								\
+	$(addprefix parsing/,			\
+		parse_file.c				\
 	)								\
 	$(addprefix utils/,				\
 		$(addprefix split/,			\
@@ -39,11 +47,37 @@ SRCS = \
 				vect3d.c			\
 			)						\
 		)							\
+		$(addprefix strings/,		\
+			ft_atoi.c				\
+			ft_atoi_base.c			\
+			ft_isdigit.c			\
+			ft_isspace.c			\
+			ft_strncmp.c			\
+			ft_strichr.c			\
+		)							\
+	)
+
+SRCS_MAIN = main.c
+
+TEST_SRCS = \
+	$(addprefix munit/,				\
+		munit.c						\
+	)								\
+	$(addprefix tests/,				\
+		test_atoi.c					\
+		test_strichr.c				\
+		test_atoi_base.c			\
 	)								\
 	main.c
 
 SRCS := $(SRCS:%=$(SRC_DIR)/%)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+SRCS_MAIN := $(SRCS_MAIN:%=$(SRC_DIR)/%)
+OBJS_MAIN = $(SRCS_MAIN:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+TEST_SRCS := $(TEST_SRCS:%=$(TEST_SRC_DIR)/%)
+TEST_OBJS = $(TEST_SRCS:$(TEST_SRC_DIR)/%.c=$(TEST_OBJ_DIR)/%.o)
 
 CC = cc
 RM = rm -rf
@@ -51,8 +85,8 @@ MKDIR = mkdir -p
 
 all: $(NAME)
 
-$(NAME): $(MLX_LIB) $(OBJS)
-	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME): $(MLX_LIB) $(OBJS_MAIN) $(OBJS)
+	$(CC) $(OBJS_MAIN) $(OBJS) -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	$(info CREATED $@)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -60,18 +94,30 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -Wall -Wextra -Werror -Imlx_linux -c -g -o $@ $<
 	$(info CREATED $@)
 
+$(TEST_NAME): $(OBJS) $(TEST_OBJS)
+	$(CC) $^ -o $@
+	$(info CREATED $@)
+
+$(TEST_OBJ_DIR)/%.o: $(TEST_SRC_DIR)/%.c
+	$(MKDIR) $(@D)
+	$(CC) -Wall -Wextra -Werror -Imlx_linux -c -g -o $@ $<
+	$(info CREATED $@)
+
 clean:
 	$(MAKE) clean -sC $(MLX_DIR)
-	$(RM) $(OBJS) $(OBJ_DIR)
+	$(RM) $(OBJ_DIR) $(TEST_OBJ_DIR) $(OBJ_COMMON_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(TEST_NAME)
 
 re:
 	$(MAKE) fclean
 	$(MAKE) all
 
+test: $(TEST_NAME)
+	./$(TEST_NAME)
+
 $(MLX_LIB):
 	$(MAKE) -sC $(MLX_DIR)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test

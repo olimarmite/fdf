@@ -1,3 +1,6 @@
 [submodule "mlx_linux"]
 	path = mlx_linux
 	url = git@github.com:42Paris/minilibx-linux.git
+[submodule "tests/munit"]
+	path = tests/munit
+	url = https://github.com/nemequ/munit.git

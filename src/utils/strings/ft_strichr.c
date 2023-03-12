@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strichr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/12 06:38:14 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/12 04:07:10 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/12 06:40:18 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "fdf.h"
-# define DEC_ALPHABET "0123456789"
+#include "../utils.h"
 
-int	main(void)
+/**
+ * @brief Search first index of char [c] in str
+ *
+ * @param char* str Text where the function search [c]
+ * @param char c Searched character
+ * @return Return index of c in str or Return -1 if not found
+ */
+int	ft_strichr(const char *str, char c)
 {
-	t_map	map;
-	t_point	*line;
-	int		i;
-	int		j;
+	size_t			i;
 
-	map.width = 10;
-	map.height = 0;
-	map.content = NULL;
 	i = 0;
-	while (i < 10)
+	while (str[i] != c)
 	{
-		j = 0;
-		line = malloc(map.width * sizeof(t_point));
-		while (j < map.width)
-		{
-			line[j] = point_create(j, 0, j, map.height + 1);
-			j++;
-		}
-		map_line_add(line, &map);
-		i ++;
+		if (str[i] == 0)
+			return (-1);
+		i++;
 	}
-	map_print(map);
-	map_destroy(&map);
+	if (str[i] == 0)
+		return (-1);
+	return (i);
 }
