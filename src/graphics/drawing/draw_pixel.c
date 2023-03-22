@@ -6,13 +6,13 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 00:59:22 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 16:11:18 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:35:42 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../drawing.h"
+#include "../graphics.h"
 
-void	draw_pixel(t_image *image, int x, int y, int color)
+void	draw_pixel(t_image_wrapper *image, int x, int y, int color)
 {
 	char	*px;
 

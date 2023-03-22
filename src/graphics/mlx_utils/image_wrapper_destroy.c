@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exception_management.h                             :+:      :+:    :+:   */
+/*   image_wrapper_destroy.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 22:02:06 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 17:56:27 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/22 18:12:51 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/22 18:31:22 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXCEPTION_MANAGEMENT_H
-# define EXCEPTION_MANAGEMENT_H
+#include "../graphics.h"
 
-# include <errno.h>
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-
-void	ft_fatal_error(char *error_msg, int set_errno);
-int		errmsg(char *error_msg, int set_errno);
-void	warnmsg(char *error_msg);
-
-
-#endif
+void	image_wrapper_destroy(void *mlx, t_image_wrapper **img_wrp)
+{
+	mlx_destroy_image(mlx, (*img_wrp)->img);
+	free(*img_wrp);
+	*img_wrp = NULL;
+}

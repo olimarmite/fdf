@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 02:23:06 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:01:23 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,60 +41,59 @@ int	main(int argc, char **argv)
 	//return (0);
 }
 
-typedef struct	s_vars {
-	void	*mlx;
-	void	*mlx_win;
-	t_image	img_wrapper;
-}				t_vars;
-
-
-int on_mouse_move(int button, int x, int y, t_vars *vars)
+int	on_mouse_move(int button, int x, int y, t_drawable_window *drw_win)
 {
+	t_line	line;
+
 	printf("mouse : %i ; %i\n", x, y);
-	t_line line;
 	line.x1 = WINDOW_WIDTH / 2;
 	line.y1 = WINDOW_HEIGHT / 2;
 	line.x2 = x;
 	line.y2 = y;
 	line.color = 0x00FF0000;
-	draw_line(line, &vars->img_wrapper);
-	draw_pixel(&vars->img_wrapper, x, y, 0x0000FF00);
-	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img_wrapper.img, 0, 0);
+	draw_line(line, drw_win->img_wrapper);
+	draw_pixel(drw_win->img_wrapper, x, y, 0x0000FF00);
+	mlx_put_image_to_window(drw_win->mlx, drw_win->mlx_win, drw_win->img_wrapper->img, 0, 0);
 
+	return (0);
 }
 
-void	main_graphics()
+int	ft_close(t_drawable_window *drw_win)
 {
-	t_vars vars;
-	// void	*mlx;
-	// void	*mlx_win;
-	// t_image	img_wrapper;
+	void	*mlx;
 
-	vars.mlx = mlx_init();
-	if (vars.mlx == 0)
-		ft_fatal_error("Error init -> mlx_init :", errno);
-	vars.mlx_win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
-	if (vars.mlx == 0)
-		ft_fatal_error("Error init -> mlx_new_window :", errno);
-	vars.img_wrapper.width = WINDOW_WIDTH;
-	vars.img_wrapper.height = WINDOW_HEIGHT;
-	vars.img_wrapper.img = mlx_new_image(vars.mlx, vars.img_wrapper.width, vars.img_wrapper.height);
-	if (vars.img_wrapper.img == 0)
-		ft_fatal_error("Error init -> failed to create frame image :", errno);
-	vars.img_wrapper.addr = mlx_get_data_addr(vars.img_wrapper.img,
-			&vars.img_wrapper.bits_per_pixel, &vars.img_wrapper.line_length,
-			&vars.img_wrapper.endian);
+	mlx = drw_win->mlx;
+	drawable_window_destroy(&drw_win);
+	mlx_destroy_display(mlx);
+	free(mlx);
+	exit(0);
+	return (0);
+}
 
-	draw_pixel(&vars.img_wrapper, 5, 5, 0x00FF0000);
-	draw_pixel(&vars.img_wrapper, 5, 15, 0x00FF0000);
-	t_line line;
+void	main_graphics(void)
+{
+	void				*mlx;
+	t_drawable_window	*drw_win;
+	t_line				line;
+
+	mlx = mlx_init();
+	drw_win = drawable_window_create(mlx, WINDOW_WIDTH,
+			WINDOW_HEIGHT, "Hello World");
+
+	draw_pixel(drw_win->img_wrapper, 5, 5, 0x00FF0000);
+	draw_pixel(drw_win->img_wrapper, 5, 15, 0x00FF0000);
 	line.x1 = 100;
 	line.y1 = 100;
 	line.x2 = 150;
 	line.y2 = 200;
 	line.color = 0x00FF0000;
-	draw_line(line, &vars.img_wrapper);
-	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img_wrapper.img, 0, 0);
-	mlx_mouse_hook(vars.mlx_win, on_mouse_move, &vars);
-	mlx_loop(vars.mlx);
+	draw_line(line, drw_win->img_wrapper);
+	mlx_put_image_to_window(mlx, drw_win->mlx_win,
+		drw_win->img_wrapper->img, 0, 0);
+	mlx_mouse_hook(drw_win->mlx_win, on_mouse_move, drw_win);
+	mlx_hook(drw_win->mlx_win, 17, 1L<<17, ft_close, drw_win);
+	mlx_loop(mlx);
+	ft_close(drw_win);
+	// drawable_window_destroy(&drw_win);
+	// free(mlx);
 }

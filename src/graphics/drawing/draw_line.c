@@ -6,14 +6,13 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 01:19:00 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 02:30:46 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:35:36 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../drawing.h"
-#include <math.h>
+#include "../graphics.h"
 
-void	draw_line(t_line line, t_image *img)
+void	draw_line(t_line line, t_image_wrapper *img)
 {
 	float	dx;
 	float	dy;
