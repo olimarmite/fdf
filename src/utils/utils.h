@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:47:16 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/12 06:00:58 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/16 00:51:50 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_vect2d
 {
@@ -41,6 +42,7 @@ int			ft_atoi(const char *nptr, int *nbr);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strichr(const char *str, char c);
 int			ft_atoi_base(const char *nptr, int *nbr, char *base, int base_len);
+int			ft_atoi_hex(const char *nptr, int *nbr);
 
 t_vect2d	vect2d(int x, int y);
 t_vect2d	vect2d_add(t_vect2d vect1, t_vect2d vect2);

@@ -14,47 +14,57 @@ TEST_SRC_DIR 	= tests
 TEST_OBJ_DIR 	= $(OBJ_COMMON_DIR)/tests
 
 SRCS = \
-	$(addprefix map/,				\
-		map_line_add.c				\
-		map_print.c					\
-		point_create.c				\
-		map_destroy.c				\
-	)								\
-	$(addprefix parsing/,			\
-		parse_file.c				\
-	)								\
-	$(addprefix utils/,				\
-		$(addprefix split/,			\
-			ft_split.c				\
-			ft_substr.c				\
-		)							\
-		$(addprefix	get_next_line/,	\
-			get_next_line_utils.c	\
-			get_next_line.c			\
-			get_next_line_close.c	\
-		)							\
-		$(addprefix vectors/,		\
-			$(addprefix vect2d/,	\
-				vect2d_add.c		\
-				vect2d_multiply.c	\
-				vect2d_divide.c		\
-				vect2d.c			\
-			)						\
-			$(addprefix vect3d/,	\
-				vect3d_add.c		\
-				vect3d_multiply.c	\
-				vect3d_divide.c		\
-				vect3d.c			\
-			)						\
-		)							\
-		$(addprefix strings/,		\
-			ft_atoi.c				\
-			ft_atoi_base.c			\
-			ft_isdigit.c			\
-			ft_isspace.c			\
-			ft_strncmp.c			\
-			ft_strichr.c			\
-		)							\
+	$(addprefix map/,						\
+		map_line_add.c						\
+		map_print.c							\
+		point_create.c						\
+		map_destroy.c						\
+	)										\
+	$(addprefix exception_management/,		\
+		ft_error.c							\
+	)										\
+	$(addprefix drawing/,					\
+		$(addprefix tools/,					\
+			draw_line.c						\
+			draw_pixel.c					\
+		)									\
+	)										\
+	$(addprefix parsing/,					\
+		parse_file.c						\
+	)										\
+	$(addprefix utils/,						\
+		$(addprefix split/,					\
+			ft_split.c						\
+			ft_substr.c						\
+		)									\
+		$(addprefix	get_next_line/,			\
+			get_next_line_utils.c			\
+			get_next_line.c					\
+			get_next_line_close.c			\
+		)									\
+		$(addprefix vectors/,				\
+			$(addprefix vect2d/,			\
+				vect2d_add.c				\
+				vect2d_multiply.c			\
+				vect2d_divide.c				\
+				vect2d.c					\
+			)								\
+			$(addprefix vect3d/,			\
+				vect3d_add.c				\
+				vect3d_multiply.c			\
+				vect3d_divide.c				\
+				vect3d.c					\
+			)								\
+		)									\
+		$(addprefix strings/,				\
+			ft_atoi.c						\
+			ft_atoi_base.c					\
+			ft_atoi_hex.c					\
+			ft_isdigit.c					\
+			ft_isspace.c					\
+			ft_strncmp.c					\
+			ft_strichr.c					\
+		)									\
 	)
 
 SRCS_MAIN = main.c
@@ -83,6 +93,8 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
+CFLAGS = -Wall -Wextra #-Werror
+
 all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(OBJS_MAIN) $(OBJS)
@@ -91,7 +103,7 @@ $(NAME): $(MLX_LIB) $(OBJS_MAIN) $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(MKDIR) $(@D)
-	$(CC) -Wall -Wextra -Werror -Imlx_linux -c -g -o $@ $<
+	$(CC) $(CFLAGS)-Imlx_linux -c -g -o $@ $<
 	$(info CREATED $@)
 
 $(TEST_NAME): $(OBJS) $(TEST_OBJS)
@@ -100,7 +112,7 @@ $(TEST_NAME): $(OBJS) $(TEST_OBJS)
 
 $(TEST_OBJ_DIR)/%.o: $(TEST_SRC_DIR)/%.c
 	$(MKDIR) $(@D)
-	$(CC) -Wall -Wextra -Werror -Imlx_linux -c -g -o $@ $<
+	$(CC) $(CFLAGS)-Imlx_linux -c -g -o $@ $<
 	$(info CREATED $@)
 
 clean:

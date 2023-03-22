@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   draw_pixel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 00:10:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 00:24:34 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/22 00:59:22 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/22 16:11:18 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exception_management.h"
+#include "../drawing.h"
 
-void	ft_fatal_error(char *error_msg, int set_errno)
+void	draw_pixel(t_image *image, int x, int y, int color)
 {
-	if (set_errno != 0)
-		errno = set_errno;
-	perror(error_msg);
-	exit(errno);
+	char	*px;
+
+	px = image->addr + ((image->line_length * y)
+			+ (x * (image->bits_per_pixel / 8)));
+	*(unsigned int *)px = color;
 }
