@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_exit.c                                         :+:      :+:    :+:   */
+/*   context.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 23:58:20 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 02:20:33 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/23 02:17:25 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/23 02:18:53 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_exit.h"
+#ifndef CONTEXT_H
+# define CONTEXT_H
 
-void	fdf_exit(t_context *context)
+#include "../graphics/graphics.h"
+#include "../map/map.h"
+
+typedef struct s_context
 {
-	map_destroy(&context->map);
-	drawable_window_destroy(&context->drw_win);
-	mlx_destroy_display(context->mlx);
-	free(context->mlx);
-	exit(0);
-}
+	t_drawable_window	*drw_win;
+	t_map				map;
+	void				*mlx;
+}	t_context;
+
+#endif

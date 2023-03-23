@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 01:24:48 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 02:25:15 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	main_graphics();
 
 int	main(int argc, char **argv)
 {
-	t_map	map;
-	int		fd;
+	t_context	context;
+	int			fd;
+
+	context.drw_win = NULL;
 
 	if (argc != 2)
 	{
@@ -31,13 +33,12 @@ int	main(int argc, char **argv)
 	}
 	fd = open(argv[1], O_RDONLY);
 
-	if (parse_file(fd, &map) != 0)
+	if (parse_file(fd, &context.map) != 0)
 	{
 		return (1);
 	}
-	map_print(map);
-	map_destroy(&map);
-//	main_graphics();
+	map_print(context.map);
+	main_graphics(&context);
 	return (0);
 }
 
@@ -58,39 +59,31 @@ int	main(int argc, char **argv)
 // 	return (0);
 // }
 
-// int	ft_close(t_drawable_window *drw_win)
-// {
-// 	void	*mlx;
 
-// 	mlx = drw_win->mlx;
-// 	drawable_window_destroy(&drw_win);
-// 	mlx_destroy_display(mlx);
-// 	free(mlx);
-// 	exit(0);
-// 	return (0);
-// }
-
-void	main_graphics(void)
+void	main_graphics(t_context *context)
 {
 	void				*mlx;
-	t_drawable_window	*drw_win;
 	t_line				line;
 
 	mlx = mlx_init();
-	drw_win = drawable_window_create(mlx, WINDOW_WIDTH,
+	context->mlx = mlx;
+	context->drw_win = drawable_window_create(mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "Hello World");
-
-	draw_pixel(drw_win->img_wrapper, 5, 5, 0x00FF0000);
-	draw_pixel(drw_win->img_wrapper, 5, 15, 0x00FF0000);
+	if (context->drw_win == NULL)
+	{
+		return ;
+	}
+	draw_pixel(context->drw_win->img_wrapper, 5, 5, 0x00FF0000);
+	draw_pixel(context->drw_win->img_wrapper, 5, 15, 0x00FF0000);
 	line.x1 = 100;
 	line.y1 = 100;
 	line.x2 = 150;
 	line.y2 = 200;
 	line.color = 0x00FF0000;
-	draw_line(line, drw_win->img_wrapper);
-	mlx_put_image_to_window(mlx, drw_win->mlx_win,
-		drw_win->img_wrapper->img, 0, 0);
-	register_close_events(drw_win);
+	draw_line(line, context->drw_win->img_wrapper);
+	mlx_put_image_to_window(mlx, context->drw_win->mlx_win,
+		context->drw_win->img_wrapper->img, 0, 0);
+	register_close_events(context);
 	mlx_loop(mlx);
-	fdf_exit(drw_win);
+	fdf_exit(context);
 }
