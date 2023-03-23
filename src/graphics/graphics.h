@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 02:39:18 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 05:41:46 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include "../utils/utils.h"
+# include "../map/map.h"
 
 typedef struct s_image_wrapper
 {
@@ -51,5 +53,7 @@ t_drawable_window	*drawable_window_create(void *mlx, int width,
 						int height, char *title);
 void				drawable_window_destroy(t_drawable_window **drw_win);
 void				refresh(t_drawable_window *drw_win);
+t_vect2d			isometry_transform(t_point point, t_vect2d start_pos);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 03:03:25 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 05:53:28 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	draw_map_test(t_context *context);
 
 void	main_graphics(t_context *context)
 {
-	void				*mlx;
-	t_line				line;
+	void	*mlx;
 
 	mlx = mlx_init();
 	context->mlx = mlx;
@@ -74,14 +73,6 @@ void	main_graphics(t_context *context)
 	{
 		return ;
 	}
-	//draw_pixel(context->drw_win->img_wrapper, 5, 5, 0x00FF0000);
-	//draw_pixel(context->drw_win->img_wrapper, 5, 15, 0x00FF0000);
-	line.x1 = 100;
-	line.y1 = 100;
-	line.x2 = 150;
-	line.y2 = 200;
-	line.color = 0x00FF0000;
-	draw_line(line, context->drw_win->img_wrapper);
 	mlx_put_image_to_window(mlx, context->drw_win->mlx_win,
 		context->drw_win->img_wrapper->img, 0, 0);
 	draw_map_test(context);
@@ -91,37 +82,57 @@ void	main_graphics(t_context *context)
 }
 
 
+// t_vect2d center_position(t_vect2d map_size, til)
+// {
+
+// }
+
+
 void	draw_map_test(t_context *context)
 {
-	t_map	map;
-	int		y;
-	int		x;
-	t_line				line;
-
+	t_map		map;
+	int			y;
+	int			x;
+	t_line		line;
+	int			ratio;
+	t_vect2d	screen_pos;
+	t_vect2d	screen_pos_next;
+	ratio = 30;
 	map = context->map;
 	y = 0;
-	while (y < map.height - 1)
+	while (y < map.height)
 	{
 		x = 0;
-		while (x < map.width - 1)
+		while (x < map.width)
 		{
-			line.x1 = x * 10;
-			line.y1 = y * 10;
-			line.x2 = (x + 1) * 10;
-			line.y2 = (y) * 10;
-			line.color = 0x0000FF00 * map.content[y][x + 1].altitude *  map.content[y][x].altitude;//0x00FF0000;
-			draw_line(line, context->drw_win->img_wrapper);
-			line.x1 = x * 10;
-			line.y1 = y * 10;
-			line.x2 = (x) * 10;
-			line.y2 = (y + 1) * 10;
-			line.color = 0x0000FF00 * map.content[y + 1][x].altitude * map.content[y][x].altitude;//0x00FF0000;
-			draw_line(line, context->drw_win->img_wrapper);
-			draw_pixel(context->drw_win->img_wrapper, x * 10, y * 10, 0x00FF0000 * map.content[y][x].altitude );//map.content[y][x].altitude);
-			refresh(context->drw_win);
+			screen_pos = isometry_transform(map.content[y][x], vect2d(0,0));
+			if (y != map.height - 1)
+			{
+				screen_pos_next = isometry_transform(map.content[y + 1][x], vect2d(0,0));
+				line.x1 = screen_pos.x;
+				line.y1 = screen_pos.y;
+				line.x2 = screen_pos_next.x ;
+				line.y2 = screen_pos_next.y ;
+				line.color = 0x00FF0000;
+				draw_line(line, context->drw_win->img_wrapper);
+			}
+			if (x != map.width - 1)
+			{
+				screen_pos_next = isometry_transform(map.content[y][x + 1], vect2d(0,0));
+				line.x1 = screen_pos.x;
+				line.y1 = screen_pos.y;
+				line.x2 = screen_pos_next.x ;
+				line.y2 = screen_pos_next.y ;
+				line.color = 0x00FF0000;
+				draw_line(line, context->drw_win->img_wrapper);
+			}
+			// draw_pixel(context->drw_win->img_wrapper, x * ratio , y * ratio , 0x00FF0000 * map.content[y][x].altitude );//map.content[y][x].altitude);
+			printf("%i, %i\n", screen_pos.x, screen_pos.y, ratio);
+			draw_pixel(context->drw_win->img_wrapper, screen_pos.x , screen_pos.y, 0x00FF0000);// * map.content[y][x].altitude );//map.content[y][x].altitude);
 
 			x++;
 		}
+			refresh(context->drw_win);
 		y++;
 	}
 	refresh(context->drw_win);

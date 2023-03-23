@@ -21,6 +21,9 @@ SRCS = \
 		map_destroy.c							\
 	)											\
 	$(addprefix graphics/,						\
+		$(addprefix transformers/,				\
+			isometry.c							\
+		)										\
 		$(addprefix drawing/,					\
 			draw_line.c							\
 			draw_pixel.c						\
