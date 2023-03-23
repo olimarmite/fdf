@@ -24,6 +24,7 @@ SRCS = \
 		$(addprefix drawing/,					\
 			draw_line.c							\
 			draw_pixel.c						\
+			refresh.c							\
 		)										\
 		$(addprefix mlx_utils/,					\
 			drawable_window_create.c			\

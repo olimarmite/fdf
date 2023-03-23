@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 01:40:44 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 02:39:18 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void				image_wrapper_destroy(void *mlx, t_image_wrapper **img_wrp);
 t_drawable_window	*drawable_window_create(void *mlx, int width,
 						int height, char *title);
 void				drawable_window_destroy(t_drawable_window **drw_win);
+void				refresh(t_drawable_window *drw_win);
 
 #endif
