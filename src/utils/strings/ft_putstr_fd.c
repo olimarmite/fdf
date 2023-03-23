@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 00:02:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 01:39:59 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/23 01:30:21 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/23 01:41:23 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "../utils.h"
 
-# include "utils/utils.h"
-# include "graphics/graphics.h"
-# include "map/map.h"
-# include "parsing/parsing.h"
-# include "events/events.h"
-# include "exit/fdf_exit.h"
-# include <mlx.h>
+void	ft_putstr_fd(char *str, int fd)
+{
+	int	size;
 
-#endif
+	size = 0;
+	while (str[size])
+	{
+		size ++;
+	}
+	write(fd, str, size);
+}

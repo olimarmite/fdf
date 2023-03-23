@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 23:01:23 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:24:48 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,53 +22,53 @@ void	main_graphics();
 
 int	main(int argc, char **argv)
 {
-	// t_map	map;
-	// int		fd;
+	t_map	map;
+	int		fd;
 
-	// if (argc != 2)
-	// {
-	// 	return (1);
-	// }
-	// fd = open(argv[1], O_RDONLY);
+	if (argc != 2)
+	{
+		return (1);
+	}
+	fd = open(argv[1], O_RDONLY);
 
-	// if (parse_file(fd, &map) != 0)
-	// {
-	// 	return (1);
-	// }
-	// map_print(map);
-	// map_destroy(&map);
-	main_graphics();
-	//return (0);
-}
-
-int	on_mouse_move(int button, int x, int y, t_drawable_window *drw_win)
-{
-	t_line	line;
-
-	printf("mouse : %i ; %i\n", x, y);
-	line.x1 = WINDOW_WIDTH / 2;
-	line.y1 = WINDOW_HEIGHT / 2;
-	line.x2 = x;
-	line.y2 = y;
-	line.color = 0x00FF0000;
-	draw_line(line, drw_win->img_wrapper);
-	draw_pixel(drw_win->img_wrapper, x, y, 0x0000FF00);
-	mlx_put_image_to_window(drw_win->mlx, drw_win->mlx_win, drw_win->img_wrapper->img, 0, 0);
-
+	if (parse_file(fd, &map) != 0)
+	{
+		return (1);
+	}
+	map_print(map);
+	map_destroy(&map);
+//	main_graphics();
 	return (0);
 }
 
-int	ft_close(t_drawable_window *drw_win)
-{
-	void	*mlx;
+// int	on_mouse_move(int button, int x, int y, t_drawable_window *drw_win)
+// {
+// 	t_line	line;
 
-	mlx = drw_win->mlx;
-	drawable_window_destroy(&drw_win);
-	mlx_destroy_display(mlx);
-	free(mlx);
-	exit(0);
-	return (0);
-}
+// 	printf("mouse : %i ; %i\n", x, y);
+// 	line.x1 = WINDOW_WIDTH / 2;
+// 	line.y1 = WINDOW_HEIGHT / 2;
+// 	line.x2 = x;
+// 	line.y2 = y;
+// 	line.color = 0x00FF0000;
+// 	draw_line(line, drw_win->img_wrapper);
+// 	draw_pixel(drw_win->img_wrapper, x, y, 0x0000FF00);
+// 	mlx_put_image_to_window(drw_win->mlx, drw_win->mlx_win, drw_win->img_wrapper->img, 0, 0);
+
+// 	return (0);
+// }
+
+// int	ft_close(t_drawable_window *drw_win)
+// {
+// 	void	*mlx;
+
+// 	mlx = drw_win->mlx;
+// 	drawable_window_destroy(&drw_win);
+// 	mlx_destroy_display(mlx);
+// 	free(mlx);
+// 	exit(0);
+// 	return (0);
+// }
 
 void	main_graphics(void)
 {
@@ -90,10 +90,7 @@ void	main_graphics(void)
 	draw_line(line, drw_win->img_wrapper);
 	mlx_put_image_to_window(mlx, drw_win->mlx_win,
 		drw_win->img_wrapper->img, 0, 0);
-	mlx_mouse_hook(drw_win->mlx_win, on_mouse_move, drw_win);
-	mlx_hook(drw_win->mlx_win, 17, 1L<<17, ft_close, drw_win);
+	register_close_events(drw_win);
 	mlx_loop(mlx);
-	ft_close(drw_win);
-	// drawable_window_destroy(&drw_win);
-	// free(mlx);
+	fdf_exit(drw_win);
 }

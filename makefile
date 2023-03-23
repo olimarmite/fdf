@@ -20,9 +20,6 @@ SRCS = \
 		point_create.c							\
 		map_destroy.c							\
 	)											\
-	$(addprefix exception_management/,			\
-		ft_error.c								\
-	)											\
 	$(addprefix graphics/,						\
 		$(addprefix drawing/,					\
 			draw_line.c							\
@@ -38,7 +35,18 @@ SRCS = \
 	$(addprefix parsing/,						\
 		parse_file.c							\
 	)											\
+	$(addprefix events/,						\
+		events.c								\
+	)											\
+	$(addprefix fdf_logic/,						\
+	)											\
+	$(addprefix exit/,							\
+		fdf_exit.c								\
+	)											\
 	$(addprefix utils/,							\
+		$(addprefix exception_management/,		\
+			ft_error.c							\
+		)										\
 		$(addprefix split/,						\
 			ft_split.c							\
 			ft_substr.c							\
@@ -70,20 +78,21 @@ SRCS = \
 			ft_isspace.c						\
 			ft_strncmp.c						\
 			ft_strichr.c						\
+			ft_putstr_fd.c						\
 		)										\
 	)
 
 SRCS_MAIN = main.c
 
 TEST_SRCS = \
-	$(addprefix munit/,				\
-		munit.c						\
-	)								\
-	$(addprefix tests/,				\
-		test_atoi.c					\
-		test_strichr.c				\
-		test_atoi_base.c			\
-	)								\
+	$(addprefix munit/,							\
+		munit.c									\
+	)											\
+	$(addprefix tests/,							\
+		test_atoi.c								\
+		test_strichr.c							\
+		test_atoi_base.c						\
+	)											\
 	main.c
 
 SRCS := $(SRCS:%=$(SRC_DIR)/%)

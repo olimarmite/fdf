@@ -6,13 +6,11 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:28:44 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/21 02:40:31 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:27:54 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-//0 0 0 0 0 1 2 3 4 5 6 7 8,0xFFFFFF 8,0xFFFFFF 8,0xFFFFFF 7 6 5 4 3 2 1 0 0 0 0 0
 
 /**
  * @brief Calculate the Width of a line
@@ -106,21 +104,17 @@ int	parse_file(int fd, t_map *map)
 	t_point	*points_line;
 	char	*line;
 	int		i;
+
 	i = 0;
 	line = get_next_line(fd);
 	map->content = NULL;
 	map->height = 0;
 	map->width = count_point(line);
-	printf("{%i}", map->width);
-
 	while (line != NULL)
 	{
 		if (parse_line(line, i, &points_line) != map->width)
 		{
-			if (points_line == NULL)
-			{
-				printf("Malloc error\n");
-			}
+			errmsg("Parse file -> line invalid", 0);
 			free(line);
 			map_destroy(map);
 			return (1);

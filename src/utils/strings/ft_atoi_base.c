@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 02:55:39 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/16 00:47:36 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:59:32 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	ft_atoi_base(const char *nptr, int *nbr, char *base, int base_len)
 		return (1);
 	while (decoded_char_base != -1)
 	{
-		//printf("\n[%li]\n", nb);
 		nb = (nb * base_len) + decoded_char_base;
 		if (nb - (*nptr == '-') > INT_MAX)
 			return (1);

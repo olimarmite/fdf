@@ -6,16 +6,15 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 18:30:01 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:40:44 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef GRAPHICS_H
-
+# define GRAPHICS_H
 # include <math.h>
 # include <mlx.h>
-# include "../exception_management/exception_management.h"
+# include <stdlib.h>
 
 typedef struct s_image_wrapper
 {
