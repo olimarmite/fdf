@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 05:53:28 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/23 06:46:19 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,14 @@ void	main_graphics(t_context *context)
 }
 
 
-// t_vect2d center_position(t_vect2d map_size, til)
-// {
+t_vect2d center_position(t_vect2d map_size, t_vect2d tile_size)
+{
+	t_vect2d position;
 
-// }
+	position.x = (map_size.y - 1) * tile_size.x / 2;
+	position.y = 0;
+	return (position);
+}
 
 
 void	draw_map_test(t_context *context)
@@ -97,18 +101,23 @@ void	draw_map_test(t_context *context)
 	int			ratio;
 	t_vect2d	screen_pos;
 	t_vect2d	screen_pos_next;
-	ratio = 30;
+	t_vect2d	start_pos;
+	int			tile_width;
+
 	map = context->map;
+	ratio = 30;
+	tile_width = 30;
+	start_pos = center_position(vect2d(map.width, map.height), vect2d(tile_width, tile_width*0.58));
 	y = 0;
 	while (y < map.height)
 	{
 		x = 0;
 		while (x < map.width)
 		{
-			screen_pos = isometry_transform(map.content[y][x], vect2d(0,0));
+			screen_pos = isometry_transform(map.content[y][x], start_pos, tile_width);
 			if (y != map.height - 1)
 			{
-				screen_pos_next = isometry_transform(map.content[y + 1][x], vect2d(0,0));
+				screen_pos_next = isometry_transform(map.content[y + 1][x], start_pos, tile_width);
 				line.x1 = screen_pos.x;
 				line.y1 = screen_pos.y;
 				line.x2 = screen_pos_next.x ;
@@ -118,7 +127,7 @@ void	draw_map_test(t_context *context)
 			}
 			if (x != map.width - 1)
 			{
-				screen_pos_next = isometry_transform(map.content[y][x + 1], vect2d(0,0));
+				screen_pos_next = isometry_transform(map.content[y][x + 1], start_pos, tile_width);
 				line.x1 = screen_pos.x;
 				line.y1 = screen_pos.y;
 				line.x2 = screen_pos_next.x ;
@@ -126,7 +135,7 @@ void	draw_map_test(t_context *context)
 				line.color = 0x00FF0000;
 				draw_line(line, context->drw_win->img_wrapper);
 			}
-			// draw_pixel(context->drw_win->img_wrapper, x * ratio , y * ratio , 0x00FF0000 * map.content[y][x].altitude );//map.content[y][x].altitude);
+		//	draw_pixel(context->drw_win->img_wrapper, x * ratio , y * ratio , 0x00FF0000 * map.content[y][x].altitude );//map.content[y][x].altitude);
 			printf("%i, %i\n", screen_pos.x, screen_pos.y, ratio);
 			draw_pixel(context->drw_win->img_wrapper, screen_pos.x , screen_pos.y, 0x00FF0000);// * map.content[y][x].altitude );//map.content[y][x].altitude);
 
