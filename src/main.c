@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 06:46:19 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/28 07:15:52 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 //# define DEC_ALPHABET "0123456789"
 #include <fcntl.h>
 
-#define WINDOW_WIDTH 1400
-#define WINDOW_HEIGHT 1200
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 1000
 
 void	main_graphics(t_context *context);
 
@@ -82,15 +82,34 @@ void	main_graphics(t_context *context)
 }
 
 
-t_vect2d center_position(t_vect2d map_size, t_vect2d tile_size)
+t_vect2d	center_position(t_context *context, t_vect2d tile_size)
 {
-	t_vect2d position;
+	t_vect2d	iso_map_size;
+	t_vect2d	center;
 
-	position.x = (map_size.y - 1) * tile_size.x / 2;
-	position.y = 0;
-	return (position);
+	iso_map_size = isometry_map_size(context->map, tile_size);
+	center.x = (context->drw_win->img_wrapper->width - iso_map_size.x
+			+ (tile_size.x * (context->map.height - 1))) / 2;
+	center.y = (context->drw_win->img_wrapper->height - iso_map_size.y) / 2;
+	return (center);
 }
 
+
+t_vect2d	calc_tile_size(t_context *context)
+{
+	t_vect2d	screen_size;
+	t_vect2d	tile_size;
+	t_map		map;
+
+	map = context->map;
+	screen_size = vect2d(context->drw_win->img_wrapper->width,
+			context->drw_win->img_wrapper->height);
+
+	tile_size.x = screen_size.x / (map.width + map.height - 2);
+	tile_size.y = screen_size.y / (map.width + map.height - 2);
+
+	return (tile_size);
+}
 
 void	draw_map_test(t_context *context)
 {
@@ -102,22 +121,28 @@ void	draw_map_test(t_context *context)
 	t_vect2d	screen_pos;
 	t_vect2d	screen_pos_next;
 	t_vect2d	start_pos;
-	int			tile_width;
+	t_vect2d	tile_size;
 
 	map = context->map;
 	ratio = 30;
-	tile_width = 30;
-	start_pos = center_position(vect2d(map.width, map.height), vect2d(tile_width, tile_width*0.58));
+	tile_size.x = calc_tile_size(context).x;
+	tile_size.y = tile_size.x * ISOMETRY_RATIO;
+	if (tile_size.y * context->map.height > context->drw_win->img_wrapper->height)
+	{
+		tile_size.y = calc_tile_size(context).y;
+		tile_size.x = tile_size.y / ISOMETRY_RATIO;
+	}
+	start_pos = center_position(context, tile_size);
 	y = 0;
 	while (y < map.height)
 	{
 		x = 0;
 		while (x < map.width)
 		{
-			screen_pos = isometry_transform(map.content[y][x], start_pos, tile_width);
+			screen_pos = isometry_transform(map.content[y][x], start_pos, tile_size);
 			if (y != map.height - 1)
 			{
-				screen_pos_next = isometry_transform(map.content[y + 1][x], start_pos, tile_width);
+				screen_pos_next = isometry_transform(map.content[y + 1][x], start_pos, tile_size);
 				line.x1 = screen_pos.x;
 				line.y1 = screen_pos.y;
 				line.x2 = screen_pos_next.x ;
@@ -127,7 +152,7 @@ void	draw_map_test(t_context *context)
 			}
 			if (x != map.width - 1)
 			{
-				screen_pos_next = isometry_transform(map.content[y][x + 1], start_pos, tile_width);
+				screen_pos_next = isometry_transform(map.content[y][x + 1], start_pos, tile_size);
 				line.x1 = screen_pos.x;
 				line.y1 = screen_pos.y;
 				line.x2 = screen_pos_next.x ;
@@ -135,14 +160,13 @@ void	draw_map_test(t_context *context)
 				line.color = 0x00FF0000;
 				draw_line(line, context->drw_win->img_wrapper);
 			}
-		//	draw_pixel(context->drw_win->img_wrapper, x * ratio , y * ratio , 0x00FF0000 * map.content[y][x].altitude );//map.content[y][x].altitude);
-			printf("%i, %i\n", screen_pos.x, screen_pos.y, ratio);
-			draw_pixel(context->drw_win->img_wrapper, screen_pos.x , screen_pos.y, 0x00FF0000);// * map.content[y][x].altitude );//map.content[y][x].altitude);
-
+		//	draw_pixel(context->drw_win->img_wrapper, screen_pos.x , screen_pos.y, 0x00FF00FF);// * map.content[y][x].altitude );//map.content[y][x].altitude);
 			x++;
 		}
 			refresh(context->drw_win);
 		y++;
 	}
+	draw_pixel(context->drw_win->img_wrapper, start_pos.x, isometry_map_size(context->map, tile_size).y, 0x0000FF00);// * map.content[y][x].altitude );//map.content[y][x].altitude);
+
 	refresh(context->drw_win);
 }
