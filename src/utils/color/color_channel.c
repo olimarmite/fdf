@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   color_channel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 22:30:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 07:20:56 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/28 07:51:27 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/28 08:05:52 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../utils.h"
 
-# include "../map/map.h"
-# include "../utils/utils.h"
+t_color	color_channels(int color)
+{
+	t_color	result;
 
-# define DEFAULT_COLOR 0x00FFFFFF
-//# define HEX_UC_ALPHABET "0123456789ABCDEF"
-//# define HEX_UC_ALPHABET "0123456789abcdef"
-
-int	parse_file(int fd, t_map *map);
-
-#endif
+	result.b = color & 0xFF;
+	result.g = (color >> 8) & 0xFF;
+	result.r = (color >> 16) & 0xFF;
+	return (result);
+}

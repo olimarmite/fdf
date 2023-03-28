@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   color_to_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 22:30:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 07:20:56 by olimarti         ###   ########.fr       */
+/*   Created: 2023/03/28 08:14:52 by olimarti          #+#    #+#             */
+/*   Updated: 2023/03/28 08:16:55 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../utils.h"
 
-# include "../map/map.h"
-# include "../utils/utils.h"
+int	color_to_int(t_color color)
+{
+	return (color.r << 16 | color.g << 8 | color.b);
+}
 
-# define DEFAULT_COLOR 0x00FFFFFF
-//# define HEX_UC_ALPHABET "0123456789ABCDEF"
-//# define HEX_UC_ALPHABET "0123456789abcdef"
-
-int	parse_file(int fd, t_map *map);
-
-#endif

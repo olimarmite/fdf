@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:47:16 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 04:26:47 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/28 08:42:30 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,23 @@
 
 typedef struct s_vect2d
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }	t_vect2d;
 
 typedef struct s_vect3d
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_vect3d;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
 char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
@@ -47,12 +54,12 @@ int			ft_atoi_base(const char *nptr, int *nbr, char *base, int base_len);
 int			ft_atoi_hex(const char *nptr, int *nbr);
 void		ft_putstr_fd(char *str, int fd);
 
-t_vect2d	vect2d(float x, float y);
+t_vect2d	vect2d(double x, double y);
 t_vect2d	vect2d_add(t_vect2d vect1, t_vect2d vect2);
 t_vect2d	vect2d_divide(t_vect2d vect1, t_vect2d vect2);
 t_vect2d	vect2d_multiply(t_vect2d vect1, t_vect2d vect2);
 
-t_vect3d	vect3d(float x, float y, float z);
+t_vect3d	vect3d(double x, double y, double z);
 t_vect3d	vect3d_add(t_vect3d vect1, t_vect3d vect2);
 t_vect3d	vect3d_divide(t_vect3d vect1, t_vect3d vect2);
 t_vect3d	vect3d_multiply(t_vect3d vect1, t_vect3d vect2);
@@ -60,5 +67,11 @@ t_vect3d	vect3d_multiply(t_vect3d vect1, t_vect3d vect2);
 void		ft_fatal_error(char *error_msg, int set_errno);
 int			errmsg(char *error_msg, int set_errno);
 void		warnmsg(char *warn_msg);
+
+t_color		color_channels(int color);
+int			color_to_int(t_color color);
+int			color_lerp(int color_a, int color_b, double t);
+
+
 
 #endif

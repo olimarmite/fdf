@@ -6,13 +6,13 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:51:11 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 04:26:11 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/28 08:31:44 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../utils.h"
 
-t_vect3d	vect3d(float x, float y, float z)
+t_vect3d	vect3d(double x, double y, double z)
 {
 	t_vect3d	result;
 

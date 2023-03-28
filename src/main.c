@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 07:15:52 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/28 09:07:48 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	draw_map_test(t_context *context)
 	t_vect2d	tile_size;
 
 	map = context->map;
-	ratio = 30;
+	ratio = 1;
 	tile_size.x = calc_tile_size(context).x;
 	tile_size.y = tile_size.x * ISOMETRY_RATIO;
 	if (tile_size.y * context->map.height > context->drw_win->img_wrapper->height)
@@ -139,34 +139,37 @@ void	draw_map_test(t_context *context)
 		x = 0;
 		while (x < map.width)
 		{
-			screen_pos = isometry_transform(map.content[y][x], start_pos, tile_size);
+			screen_pos = isometry_transform(map.content[y][x], start_pos, tile_size, ratio);
 			if (y != map.height - 1)
 			{
-				screen_pos_next = isometry_transform(map.content[y + 1][x], start_pos, tile_size);
-				line.x1 = screen_pos.x;
-				line.y1 = screen_pos.y;
-				line.x2 = screen_pos_next.x ;
-				line.y2 = screen_pos_next.y ;
-				line.color = 0x00FF0000;
+				screen_pos_next = isometry_transform(map.content[y + 1][x], start_pos, tile_size, ratio);
+				line.point_a.pos = screen_pos;
+				line.point_b.pos = screen_pos_next;
+				line.point_a.color = map.content[y][x].color;
+				line.point_b.color = map.content[y + 1][x].color;
 				draw_line(line, context->drw_win->img_wrapper);
 			}
 			if (x != map.width - 1)
 			{
-				screen_pos_next = isometry_transform(map.content[y][x + 1], start_pos, tile_size);
-				line.x1 = screen_pos.x;
-				line.y1 = screen_pos.y;
-				line.x2 = screen_pos_next.x ;
-				line.y2 = screen_pos_next.y ;
-				line.color = 0x00FF0000;
+				screen_pos_next = isometry_transform(map.content[y][x + 1], start_pos, tile_size, ratio);
+				line.point_a.pos = screen_pos;
+				line.point_b.pos = screen_pos_next;
+				line.point_a.color = map.content[y][x].color;
+				line.point_b.color = map.content[y][x + 1].color;
 				draw_line(line, context->drw_win->img_wrapper);
 			}
-		//	draw_pixel(context->drw_win->img_wrapper, screen_pos.x , screen_pos.y, 0x00FF00FF);// * map.content[y][x].altitude );//map.content[y][x].altitude);
+		//	draw_pixel(context->drw_win->img_wrapper, screen_pos.x , screen_pos.y, map.content[y][x].color),//0x00FF00FF);// * map.content[y][x].altitude );//map.content[y][x].altitude);
 			x++;
 		}
 			refresh(context->drw_win);
 		y++;
 	}
-	draw_pixel(context->drw_win->img_wrapper, start_pos.x, isometry_map_size(context->map, tile_size).y, 0x0000FF00);// * map.content[y][x].altitude );//map.content[y][x].altitude);
+	// line.point_a.pos = vect2d(10, 20);
+	// line.point_b.pos = vect2d(100, 200);
+	// line.point_a.color = 0x0000F0F0;
+	// line.point_b.color = 0x00FFFFFF;
+	// draw_line(line, context->drw_win->img_wrapper);
+	// draw_pixel(context->drw_win->img_wrapper, start_pos.x, isometry_map_size(context->map, tile_size).y, 0x0000FF00);// * map.content[y][x].altitude );//map.content[y][x].altitude);
 
 	refresh(context->drw_win);
 }

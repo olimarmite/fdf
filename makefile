@@ -51,6 +51,11 @@ SRCS = \
 		$(addprefix exception_management/,		\
 			ft_error.c							\
 		)										\
+		$(addprefix color/,						\
+			color_channel.c						\
+			color_lerp.c						\
+			color_to_int.c						\
+		)										\
 		$(addprefix split/,						\
 			ft_split.c							\
 			ft_substr.c							\

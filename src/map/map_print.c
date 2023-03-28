@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:35:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 05:36:46 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/28 09:02:41 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	map_print(t_map map)
 		while (j < map.width)
 		{
 			// printf("%i", map.content[i][j].altitude, map.content[i][j].color);
-			printf("%i ", map.content[i][j].y);
+			printf("%i ", map.content[i][j].altitude);
 			j++;
 		}
 		printf("\n");

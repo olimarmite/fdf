@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:28:44 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 01:27:54 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/03/28 07:22:07 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	parse_point(char *line, t_point *point, int point_x, int point_y)
 	i = 0;
 	point->x = point_x;
 	point->y = point_y;
-	point->color = 0;
+	point->color = DEFAULT_COLOR;
 	while (ft_isspace(line[i]))
 		i++;
 	if (ft_atoi(line + i, &point->altitude) != 0)
