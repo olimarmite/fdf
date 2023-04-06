@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 18:49:02 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/07 00:45:46 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_drawing_params
 
 void				draw_pixel(t_image_wrapper *image, int x, int y, int color);
 void				draw_line(t_line line, t_image_wrapper *img);
+void				fill_image(t_image_wrapper *image, int color);
 t_image_wrapper		*image_wrapper_create(void *mlx, int width, int height);
 void				image_wrapper_destroy(void *mlx, t_image_wrapper **img_wrp);
 t_drawable_window	*drawable_window_create(void *mlx, int width,

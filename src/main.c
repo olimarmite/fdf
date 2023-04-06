@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 22:07:58 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/07 01:24:00 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	main(int argc, char **argv)
 		return (1);
 	map_print(context.map);
 	main_graphics(&context);
+	register_close_events(&context);
+	mlx_loop(context.mlx);
 	fdf_exit(&context);
 	return (0);
 }

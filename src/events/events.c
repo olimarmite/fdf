@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:37:37 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/04 00:18:52 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/07 01:21:08 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,24 @@ static int	on_window_closed(t_context *context)
 
 static int	on_key_pressed(int key, t_context *context)
 {
+	printf("%i\n", key);
 	if (key == KEY_ESC)
 	{
 		fdf_exit(context);
+	}
+	else if (key == 65362)
+	{
+		context->drawing_params.ratio ++;
+		fill_image(context->drw_win->img_wrapper, 0);
+		draw_map(context);
+		refresh(context->drw_win);
+	}
+	else if (key == 65364)
+	{
+		context->drawing_params.ratio --;
+		fill_image(context->drw_win->img_wrapper, 0);
+		draw_map(context);
+		refresh(context->drw_win);
 	}
 }
 

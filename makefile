@@ -27,6 +27,7 @@ SRCS = \
 		$(addprefix drawing/,					\
 			draw_line.c							\
 			draw_pixel.c						\
+			fill_image.c						\
 			refresh.c							\
 		)										\
 		$(addprefix models/,					\

@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 00:50:15 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/23 02:19:23 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/07 01:14:24 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../graphics/graphics.h"
 # include "../exit/fdf_exit.h"
 # include "../context/context.h"
+# include "../fdf_logic/fdf_logic.h"
 
 void	register_close_events(t_context *context);
 

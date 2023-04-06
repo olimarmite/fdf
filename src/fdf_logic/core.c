@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:43:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 21:10:51 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/07 01:24:38 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	draw_map(t_context *context)
 			x++;
 		}
 		y++;
-		refresh(context->drw_win);
 	}
 }
 
@@ -108,7 +107,6 @@ void	main_graphics(t_context *context)
 	context->drawing_params.ratio = 1;
 	context->drawing_params.tile_size = calc_iso_tile_size_fitted(context);
 	context->drawing_params.position = center_position(context);
-	register_close_events(context);
 	draw_map(context);
-	mlx_loop(mlx);
+	refresh(context->drw_win);
 }

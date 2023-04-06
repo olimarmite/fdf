@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   context.h                                          :+:      :+:    :+:   */
+/*   fill_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 02:17:25 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 23:07:26 by olimarti         ###   ########.fr       */
+/*   Created: 2023/04/07 00:25:15 by olimarti          #+#    #+#             */
+/*   Updated: 2023/04/07 01:12:58 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTEXT_H
-# define CONTEXT_H
+#include "../graphics.h"
 
-# include "../graphics/graphics.h"
-# include "../map/map.h"
-
-typedef struct s_context
+void	fill_image(t_image_wrapper *image, int color)
 {
-	t_drawable_window	*drw_win;
-	t_map				map;
-	void				*mlx;
-	t_drawing_params	drawing_params;
-	int					is_dirty;
-}	t_context;
+	char				*px;
+	unsigned long long	image_size;
 
-#endif
+	px = image->addr;
+	image_size = image->line_length * image->height / image->bits_per_pixel * 8;
+	while (image_size > 0)
+	{
+		*(unsigned int *)px = color;
+		px += image->bits_per_pixel / 8;
+		image_size --;
+	}
+}
