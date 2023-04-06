@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:04:24 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/11 21:08:32 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:32:59 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	map_line_add(t_point *line, t_map *map)
 	i = 0;
 	new_content = malloc((map->height + 1) * sizeof(t_point *));
 	if (new_content == NULL)
+	{
+		errmsg("map_line_add, malloc error", 0);
 		return (1);
+	}
 	while (i < map->height)
 	{
 		new_content[i] = map->content[i];

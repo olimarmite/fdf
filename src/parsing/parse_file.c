@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:28:44 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 07:22:07 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:34:49 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	parse_line(char *line, int y, t_point **returned_line)
 	points_count = count_point(line);
 	*returned_line = malloc(points_count * sizeof(t_point));
 	if (*returned_line == NULL)
-		return (0);
+		return (errmsg("Parse line : line invalid", 0), 0);
 	while (i < points_count)
 	{
 		while (ft_isspace(line[j]))
@@ -112,14 +112,15 @@ int	parse_file(int fd, t_map *map)
 	map->width = count_point(line);
 	while (line != NULL)
 	{
-		if (parse_line(line, i, &points_line) != map->width)
+		if (parse_line(line, i, &points_line) != map->width
+			|| map_line_add(points_line, map))
 		{
-			errmsg("Parse file -> line invalid", 0);
+			errmsg("Parse file -> ", 0);
 			free(line);
+			free(points_line);
 			map_destroy(map);
-			return (1);
+			return (get_next_line_close(fd), 1);
 		}
-		map_line_add(points_line, map);
 		free(line);
 		line = get_next_line(fd);
 		i ++;

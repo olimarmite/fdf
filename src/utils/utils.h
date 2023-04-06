@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:47:16 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 08:42:30 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/05 00:37:19 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,5 @@ void		warnmsg(char *warn_msg);
 t_color		color_channels(int color);
 int			color_to_int(t_color color);
 int			color_lerp(int color_a, int color_b, double t);
-
-
 
 #endif

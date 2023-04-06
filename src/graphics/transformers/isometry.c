@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 04:00:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 09:04:06 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/05 00:37:35 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_vect2d	isometry_transform(t_point point, t_vect2d start_pos,
 	screen_pos.y -= point.altitude * altitude_ratio;
 	return (screen_pos);
 }
-
 
 t_vect2d	isometry_map_size(t_map map, t_vect2d tile_size)
 {

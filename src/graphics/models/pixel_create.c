@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_print.c                                        :+:      :+:    :+:   */
+/*   pixel_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 20:35:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/05 00:36:48 by olimarti         ###   ########.fr       */
+/*   Created: 2023/04/05 00:50:07 by olimarti          #+#    #+#             */
+/*   Updated: 2023/04/05 01:01:04 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../graphics.h"
 
-/**
- * @brief Display altitude points of [map]
- *
- * @param map t_map to display
- */
-void	map_print(t_map map)
+t_pixel	pixel(t_vect2d pos, int color)
 {
-	int	i;
-	int	j;
+	t_pixel	pixel;
 
-	i = 0;
-	printf("heigth : %i; width : %i\n", map.height, map.width);
-	while (i < map.height)
-	{
-		j = 0;
-		while (j < map.width)
-		{
-			printf("%i ", map.content[i][j].altitude);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	pixel.pos = pos;
+	pixel.color = color;
+	return (pixel);
 }

@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 08:14:52 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 08:16:55 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/05 00:37:05 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,3 @@ int	color_to_int(t_color color)
 {
 	return (color.r << 16 | color.g << 8 | color.b);
 }
-

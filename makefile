@@ -29,6 +29,10 @@ SRCS = \
 			draw_pixel.c						\
 			refresh.c							\
 		)										\
+		$(addprefix models/,					\
+			pixel_create.c						\
+			line_create.c						\
+		)										\
 		$(addprefix mlx_utils/,					\
 			drawable_window_create.c			\
 			image_wrapper_create.c				\
@@ -43,6 +47,8 @@ SRCS = \
 		events.c								\
 	)											\
 	$(addprefix fdf_logic/,						\
+		core.c									\
+		tiles_calcs.c							\
 	)											\
 	$(addprefix exit/,							\
 		fdf_exit.c								\
@@ -117,7 +123,7 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -g #-Werror
 
 all: $(NAME)
 
@@ -155,5 +161,8 @@ test: $(TEST_NAME)
 
 $(MLX_LIB):
 	$(MAKE) -sC $(MLX_DIR)
+
+malloc_test: $(MLX_LIB) $(OBJS_MAIN) $(OBJS)
+	$(CC) $(CFLAGS) -fsanitize=undefined -rdynamic $(OBJS_MAIN) $(OBJS) -Lmlx_linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz  -L. -lmallocator -o $@
 
 .PHONY: all clean fclean re test

@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 09:04:39 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:49:02 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ typedef struct s_drawable_window
 	t_image_wrapper	*img_wrapper;
 }	t_drawable_window;
 
+typedef struct s_drawing_params
+{
+	t_vect2d		position;
+	t_vect2d		tile_size;
+	int				ratio;
+}	t_drawing_params;
+
 void				draw_pixel(t_image_wrapper *image, int x, int y, int color);
 void				draw_line(t_line line, t_image_wrapper *img);
 t_image_wrapper		*image_wrapper_create(void *mlx, int width, int height);
@@ -61,4 +68,8 @@ void				refresh(t_drawable_window *drw_win);
 t_vect2d			isometry_map_size(t_map map, t_vect2d tile_size);
 t_vect2d			isometry_transform(t_point point, t_vect2d start_pos,
 						t_vect2d tile_size, int altitude_ratio);
+
+t_pixel				pixel(t_vect2d pos, int color);
+t_line				line(t_pixel point_a, t_pixel point_b);
+
 #endif
