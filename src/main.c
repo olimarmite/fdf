@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 21:09:28 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/06 22:07:58 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 //# define DEC_ALPHABET "0123456789"
 #include <fcntl.h>
 
+int	validate_filename(char *path)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (path[i])
+	{
+		j = 0;
+		while (path[i + j] == FILE_EXT[j])
+		{
+			if (path[i + j] == 0)
+			{
+				return (i == 0);
+			}
+			j ++;
+		}
+		i ++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_context	context;
@@ -22,14 +44,14 @@ int	main(int argc, char **argv)
 
 	context.drw_win = NULL;
 	if (argc != 2)
-	{
 		return (1);
-	}
+	if (validate_filename(argv[1]))
+		ft_fatal_error("invalid map filename", 0);
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		ft_fatal_error("can't open map file", 0);
 	if (parse_file(fd, &context.map) != 0)
-	{
 		return (1);
-	}
 	map_print(context.map);
 	main_graphics(&context);
 	fdf_exit(&context);
