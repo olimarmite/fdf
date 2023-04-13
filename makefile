@@ -50,6 +50,10 @@ SRCS = \
 	$(addprefix fdf_logic/,						\
 		core.c									\
 		tiles_calcs.c							\
+		redraw_map.c							\
+		$(addprefix controls/,					\
+			controls.c							\
+		)										\
 	)											\
 	$(addprefix exit/,							\
 		fdf_exit.c								\
@@ -124,7 +128,7 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Wextra -g #-Werror
+CFLAGS = -Wall -Wextra -g -O3 #-Werror
 
 all: $(NAME)
 

@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   refresh.c                                          :+:      :+:    :+:   */
+/*   redraw_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 02:36:34 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/12 21:02:55 by olivier          ###   ########.fr       */
+/*   Created: 2023/04/12 18:45:47 by olivier           #+#    #+#             */
+/*   Updated: 2023/04/12 21:27:17 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../graphics.h"
+#include "fdf_logic.h"
 
-void	refresh(t_drawable_window *drw_win)
+void    redraw_map(t_context *context)
 {
-	mlx_put_image_to_window(drw_win->mlx, drw_win->mlx_win,
-		drw_win->img_wrapper->img, 0, 0);
+    fill_image(context->drw_win->img_wrapper, 0);
+    draw_map(context);
+    refresh(context->drw_win);
+}
+
+void	refresh_if_needed(t_context *context)
+{
+	if (context->is_dirty)
+	{
+		redraw_map(context);
+		context->is_dirty = 0;
+	}
 }
