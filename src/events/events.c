@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:37:37 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 22:41:18 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/15 00:33:20 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int	on_key_pressed(int key, t_context *context)
 	if (key == KEY_ESC)
 		fdf_exit(context);
 	else if (key == 97)
-		fdf_zoom(0.5, context);
+		fdf_zoom(-1, context);
 	else if (key == 122)
-		fdf_zoom(2, context);
+		fdf_zoom(1, context);
 	else if (key == 106)
 		fdf_altitude_zoom(-1, context);
 	else if (key == 107)
@@ -51,6 +51,7 @@ static int	on_key_pressed(int key, t_context *context)
 		fdf_rot(vect3d(0, -0.01, 0), context);
 	else if (key == 99)
 		fdf_rot(vect3d(0, 0, -0.01), context);
+	return (0);
 }
 
 void	register_close_events(t_context *context)

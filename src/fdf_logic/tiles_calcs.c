@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:23:30 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 23:25:24 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/15 00:34:33 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_vect2d	center_position(t_context *context)
 {
-	t_vect2d	iso_map_size;
+	// t_vect2d	iso_map_size;
 	t_vect2d	center;
-
+	(void) context;
 	// iso_map_size = isometry_map_size(context->map,
 	// 		context->drawing_params.tile_size);
 	// center.x = (context->drw_win->img_wrapper->width - iso_map_size.x

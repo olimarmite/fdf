@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:44:53 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 23:19:24 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/15 00:32:25 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vect2d	calc_tile_size(t_context *context);
 t_vect2d	calc_iso_tile_size_fitted(t_context *context);
 void		draw_map(t_context *context);
 void        redraw_map(t_context *context);
-void	    refresh_if_needed(t_context *context);
+int	        refresh_if_needed(t_context *context);
 
 void        fdf_altitude_zoom(float factor, t_context *context);
 void        fdf_zoom(float factor, t_context *context);

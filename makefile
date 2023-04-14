@@ -131,7 +131,7 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Wextra -g -O3 #-Werror
+CFLAGS = -Wall -Wextra -g -Werror
 
 all: $(NAME)
 
@@ -141,7 +141,7 @@ $(NAME): $(MLX_LIB) $(OBJS_MAIN) $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS)-Imlx_linux -c -g -o $@ $<
+	$(CC) $(CFLAGS) -Imlx_linux -c -g -o $@ $<
 	$(info CREATED $@)
 
 $(TEST_NAME): $(OBJS) $(TEST_OBJS)
@@ -150,7 +150,7 @@ $(TEST_NAME): $(OBJS) $(TEST_OBJS)
 
 $(TEST_OBJ_DIR)/%.o: $(TEST_SRC_DIR)/%.c
 	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS)-Imlx_linux -c -g -o $@ $<
+	$(CC) $(CFLAGS) -Imlx_linux -c -g -o $@ $<
 	$(info CREATED $@)
 
 clean:
