@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:44:53 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/13 18:44:45 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/14 23:19:24 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void        fdf_altitude_zoom(float factor, t_context *context);
 void        fdf_zoom(float factor, t_context *context);
 void        fdf_move(int x, int y, t_context *context);
 void        fdf_rot(t_vect3d angle, t_context *context);
+double      calc_zoom_factor(t_context *context);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/13 18:30:19 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/14 22:21:51 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ typedef struct s_drawable_window
 typedef struct s_drawing_params
 {
 	t_vect2d		position;
-	t_vect2d		tile_size;
-	int				ratio;
+	double			zoom;
+	double			ratio;
 	t_vect3d		rot;
-}	t_drawing_params;
+}		t_drawing_params;
 
 void				draw_pixel(t_image_wrapper *image, int x, int y, int color);
 void				draw_line(t_line line, t_image_wrapper *img);
@@ -68,7 +68,9 @@ t_drawable_window	*drawable_window_create(void *mlx, int width,
 void				drawable_window_destroy(t_drawable_window **drw_win);
 void				refresh(t_drawable_window *drw_win);
 t_vect2d			isometry_map_size(t_map map, t_vect2d tile_size);
-t_vect2d			isometry_transform(t_point point, t_drawing_params params);
+t_vect2d			isometry_transform(t_point point, t_drawing_params params,
+						t_vect2d map_size);
+
 
 
 t_pixel				pixel(t_vect2d pos, int color);

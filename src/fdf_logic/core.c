@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:43:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/13 18:41:11 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/14 23:18:39 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_line_column(int x, int y, t_vect2d screen_pos, t_context *context)
 	if (y != map.height - 1)
 	{
 		drw_params = context->drawing_params;
-		screen_pos_next = isometry_transform(map.content[y + 1][x], drw_params);
+		screen_pos_next = isometry_transform(map.content[y + 1][x], drw_params, vect2d(map.width, map.height));
 		draw_line(
 			line(pixel(screen_pos, map.content[y][x].color),
 				pixel(screen_pos_next, map.content[y + 1][x].color)),
@@ -41,7 +41,7 @@ void	draw_line_row(int x, int y, t_vect2d screen_pos, t_context *context)
 	if (x != map.width - 1)
 	{
 		drw_params = context->drawing_params;
-		screen_pos_next = isometry_transform(map.content[y][x + 1], drw_params);
+		screen_pos_next = isometry_transform(map.content[y][x + 1], drw_params, vect2d(map.width, map.height));
 		draw_line(
 			line(pixel(screen_pos, map.content[y][x].color),
 				pixel(screen_pos_next, map.content[y][x + 1].color)),
@@ -54,7 +54,7 @@ void	draw_point_line_neighbour(int x, int y, t_context *context)
 	t_vect2d			screen_pos;
 
 	screen_pos = isometry_transform(context->map.content[y][x],
-			context->drawing_params);
+			context->drawing_params, vect2d(context->map.width, context->map.height));
 	draw_line_column(x, y, screen_pos, context);
 	draw_line_row(x, y, screen_pos, context);
 }
@@ -100,7 +100,7 @@ void	main_graphics(t_context *context)
 	}
 	context->drawing_params.rot = vect3d(0, 0, 0);
 	context->drawing_params.ratio = 1;
-	context->drawing_params.tile_size = calc_iso_tile_size_fitted(context);
+	context->drawing_params.zoom = calc_zoom_factor(context);//1;//calc_iso_tile_size_fitted(context);
 	context->drawing_params.position = center_position(context);
 	context->is_dirty = 1;
 	mlx_loop_hook(mlx, refresh_if_needed, context);

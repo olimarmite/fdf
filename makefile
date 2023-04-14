@@ -67,6 +67,9 @@ SRCS = \
 			color_lerp.c						\
 			color_to_int.c						\
 		)										\
+		$(addprefix math/,						\
+			ft_min.c							\
+		)										\
 		$(addprefix split/,						\
 			ft_split.c							\
 			ft_substr.c							\

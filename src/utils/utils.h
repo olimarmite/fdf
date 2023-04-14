@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:47:16 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/05 00:37:19 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:15:33 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ void		warnmsg(char *warn_msg);
 t_color		color_channels(int color);
 int			color_to_int(t_color color);
 int			color_lerp(int color_a, int color_b, double t);
+
+double		ft_min(double nb_a, double nb_b);
 
 #endif

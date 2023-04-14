@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tiles_calcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:23:30 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 20:42:21 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:25:24 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ t_vect2d	center_position(t_context *context)
 	t_vect2d	iso_map_size;
 	t_vect2d	center;
 
-	iso_map_size = isometry_map_size(context->map,
-			context->drawing_params.tile_size);
-	center.x = (context->drw_win->img_wrapper->width - iso_map_size.x
-			+ (context->drawing_params.tile_size.x
-				* (context->map.height - 1))) / 2;
-	center.y = (context->drw_win->img_wrapper->height - iso_map_size.y) / 2;
+	// iso_map_size = isometry_map_size(context->map,
+	// 		context->drawing_params.tile_size);
+	// center.x = (context->drw_win->img_wrapper->width - iso_map_size.x
+	// 		+ (context->drawing_params.tile_size.x
+	// 			* (context->map.height - 1))) / 2;
+	// center.y = (context->drw_win->img_wrapper->height - iso_map_size.y) / 2;
+	center = vect2d(0,0);
 	return (center);
 }
 
@@ -53,4 +54,13 @@ t_vect2d	calc_iso_tile_size_fitted(t_context *context)
 		tile_size.x = tile_size.y / ISOMETRY_RATIO;
 	}
 	return (tile_size);
+}
+
+double	calc_zoom_factor(t_context *context)
+{
+	double factor;
+
+	factor = ft_min(context->drw_win->img_wrapper->width / context->map.width,
+		context->drw_win->img_wrapper->height / context->map.height);
+	return (factor);
 }
