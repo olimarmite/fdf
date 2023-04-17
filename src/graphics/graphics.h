@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:00:29 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 22:21:51 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:36:02 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ typedef struct s_image_wrapper
 	int		endian;
 	int		width;
 	int		height;
+	double		*z_buff;
 }	t_image_wrapper;
 
 typedef struct s_pixel
 {
-	t_vect2d	pos;
+	t_vect3d	pos;
 	int			color;
 }	t_pixel;
 
@@ -59,6 +60,9 @@ typedef struct s_drawing_params
 }		t_drawing_params;
 
 void				draw_pixel(t_image_wrapper *image, int x, int y, int color);
+void				draw_pixel_depth(t_image_wrapper *image, t_vect2d position,
+						double depth, int color);
+
 void				draw_line(t_line line, t_image_wrapper *img);
 void				fill_image(t_image_wrapper *image, int color);
 t_image_wrapper		*image_wrapper_create(void *mlx, int width, int height);
@@ -68,12 +72,12 @@ t_drawable_window	*drawable_window_create(void *mlx, int width,
 void				drawable_window_destroy(t_drawable_window **drw_win);
 void				refresh(t_drawable_window *drw_win);
 t_vect2d			isometry_map_size(t_map map, t_vect2d tile_size);
-t_vect2d			isometry_transform(t_point point, t_drawing_params params,
+t_vect3d			isometry_transform(t_point point, t_drawing_params params,
 						t_vect2d map_size);
 
 
 
-t_pixel				pixel(t_vect2d pos, int color);
+t_pixel				pixel(t_vect3d pos, int color);
 t_line				line(t_pixel point_a, t_pixel point_b);
 
 #endif

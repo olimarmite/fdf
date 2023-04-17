@@ -6,15 +6,15 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:43:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 23:18:39 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/17 09:40:22 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_logic.h"
 
-void	draw_line_column(int x, int y, t_vect2d screen_pos, t_context *context)
+void	draw_line_column(int x, int y, t_vect3d screen_pos, t_context *context)
 {
-	t_vect2d			screen_pos_next;
+	t_vect3d			screen_pos_next;
 	t_drawing_params	drw_params;
 	t_map				map;
 
@@ -31,9 +31,9 @@ void	draw_line_column(int x, int y, t_vect2d screen_pos, t_context *context)
 	}
 }
 
-void	draw_line_row(int x, int y, t_vect2d screen_pos, t_context *context)
+void	draw_line_row(int x, int y, t_vect3d screen_pos, t_context *context)
 {
-	t_vect2d			screen_pos_next;
+	t_vect3d			screen_pos_next;
 	t_drawing_params	drw_params;
 	t_map				map;
 
@@ -51,7 +51,7 @@ void	draw_line_row(int x, int y, t_vect2d screen_pos, t_context *context)
 
 void	draw_point_line_neighbour(int x, int y, t_context *context)
 {
-	t_vect2d			screen_pos;
+	t_vect3d			screen_pos;
 
 	screen_pos = isometry_transform(context->map.content[y][x],
 			context->drawing_params, vect2d(context->map.width, context->map.height));
@@ -77,6 +77,7 @@ void	draw_map(t_context *context)
 		}
 		y++;
 	}
+	
 }
 
 void	main_graphics(t_context *context)

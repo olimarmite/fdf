@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_wrapper_destroy.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:12:51 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/22 18:31:22 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:00:17 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void	image_wrapper_destroy(void *mlx, t_image_wrapper **img_wrp)
 {
 	mlx_destroy_image(mlx, (*img_wrp)->img);
+	if ((*img_wrp)->z_buff != NULL)
+	{
+		free((*img_wrp)->z_buff);
+	}
 	free(*img_wrp);
 	*img_wrp = NULL;
 }

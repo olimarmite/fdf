@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:47:16 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 23:15:33 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/17 09:32:36 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,8 @@ int			color_to_int(t_color color);
 int			color_lerp(int color_a, int color_b, double t);
 
 double		ft_min(double nb_a, double nb_b);
+double		ft_lerp(int nb1, int nb2, double p);
+void		*ft_memset(void *s, int c, size_t n);
+
 
 #endif

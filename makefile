@@ -62,6 +62,9 @@ SRCS = \
 		$(addprefix exception_management/,		\
 			ft_error.c							\
 		)										\
+		$(addprefix memory/,					\
+			ft_memset.c							\
+		)										\
 		$(addprefix color/,						\
 			color_channel.c						\
 			color_lerp.c						\
@@ -69,6 +72,7 @@ SRCS = \
 		)										\
 		$(addprefix math/,						\
 			ft_min.c							\
+			ft_lerp.c							\
 		)										\
 		$(addprefix split/,						\
 			ft_split.c							\
@@ -131,7 +135,7 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Wextra -g -Werror
+CFLAGS = -Wall -Wextra -g #-Werror
 
 all: $(NAME)
 

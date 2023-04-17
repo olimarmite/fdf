@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 01:19:00 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/15 00:30:00 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:26:54 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define BOTTOM 4 // Bottom boundary of the viewing frustum
 #define TOP 8    // Top boundary of the viewing frustum
 
-int point_in_view(t_vect2d pixel,  t_image_wrapper *img)
+int point_in_view(t_vect3d pixel,  t_image_wrapper *img)
 {
     int code = INSIDE;
 
@@ -72,7 +72,7 @@ void	draw_line(t_line line, t_image_wrapper *img)
 	total_step = step;
 	while (step > 0)
 	{
-		draw_pixel(img, cursor.x, cursor.y, color_lerp(line.point_b.color,
+		draw_pixel_depth(img, cursor, ft_lerp(line.point_a.pos.z, line.point_b.pos.z, step / total_step), color_lerp(line.point_b.color,
 				line.point_a.color, step / total_step));
 		cursor.x = cursor.x + dx;
 		cursor.y = cursor.y + dy;

@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 04:00:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/14 22:20:58 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:05:06 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,60 @@
 #define PI 3.14159265359
 
 
-t_vect2d isometry_transform(t_point point, t_drawing_params params, t_vect2d map_size)
+// t_vect2d isometry_transform(t_point point, t_drawing_params params, t_vect2d map_size)
+// {
+//     t_vect3d screen_pos;
+//     t_vect2d screen_pos_2d;
+
+//     // Convert rotation angles from degrees to radians
+//     double ang_x = params.rot.x; //*(PI / 180.0);
+//     double ang_y = params.rot.y; //*(PI / 180.0);
+//     double ang_z = params.rot.z; //*(PI / 180.0);
+
+//     screen_pos.x = point.x  - map_size.x / 2;
+//     screen_pos.y = point.y  - map_size.y / 2;
+//     screen_pos.z = point.altitude * params.ratio;
+
+//     // Apply x-axis rotation
+//     double temp_y = screen_pos.y;
+//     double temp_z = screen_pos.z;
+//     screen_pos.y = temp_y * cos(ang_x) + temp_z * sin(ang_x);
+//     screen_pos.z = -temp_y * sin(ang_x) + temp_z * cos(ang_x);
+
+//     // Apply y-axis rotation
+//     double temp_x = screen_pos.x;
+//     temp_z = screen_pos.z;
+//     screen_pos.x = temp_x * cos(ang_y) + temp_z * sin(ang_y);
+//     screen_pos.z = -temp_x * sin(ang_y) + temp_z * cos(ang_y);
+
+//     // Apply z-axis rotation
+//     temp_x = screen_pos.x;
+//     temp_y = screen_pos.y;
+//     screen_pos.x = temp_x * cos(ang_z) - temp_y * sin(ang_z);
+//     screen_pos.y = temp_x * sin(ang_z) + temp_y * cos(ang_z);
+
+//     // Scale and translate the point
+//     // screen_pos.x -= 50;
+//     // screen_pos.y -= 50;
+//     screen_pos.x += map_size.x / 2;
+//     screen_pos.y += map_size.y / 2;
+    
+//     screen_pos.x *= params.zoom;
+//     screen_pos.y *= params.zoom;
+
+//     // Convert to 2D screen position
+//     screen_pos_2d = vect2d(screen_pos.x, screen_pos.y);
+//     screen_pos_2d = vect2d_add(screen_pos_2d, params.position);
+
+//     return screen_pos_2d;
+// }
+
+
+
+t_vect3d isometry_transform(t_point point, t_drawing_params params, t_vect2d map_size)
 {
     t_vect3d screen_pos;
-    t_vect2d screen_pos_2d;
+    // t_vect2d screen_pos_2d;
 
     // Convert rotation angles from degrees to radians
     double ang_x = params.rot.x; //*(PI / 180.0);
@@ -32,8 +82,8 @@ t_vect2d isometry_transform(t_point point, t_drawing_params params, t_vect2d map
     // Apply x-axis rotation
     double temp_y = screen_pos.y;
     double temp_z = screen_pos.z;
-    screen_pos.y = temp_y * cos(ang_x) + temp_z * sin(ang_x);
-    screen_pos.z = -temp_y * sin(ang_x) + temp_z * cos(ang_x);
+    screen_pos.y = temp_y * cos(ang_x) - temp_z * sin(ang_x);
+    screen_pos.z = temp_y * sin(ang_x) + temp_z * cos(ang_x);
 
     // Apply y-axis rotation
     double temp_x = screen_pos.x;
@@ -57,11 +107,12 @@ t_vect2d isometry_transform(t_point point, t_drawing_params params, t_vect2d map
     screen_pos.y *= params.zoom;
 
     // Convert to 2D screen position
-    screen_pos_2d = vect2d(screen_pos.x, screen_pos.y);
-    screen_pos_2d = vect2d_add(screen_pos_2d, params.position);
-
-    return screen_pos_2d;
+    screen_pos = vect3d_add(screen_pos, vect3d(params.position.x,params.position.y, 0));
+    // screen_pos_2d = vect2d(screen_pos.x, screen_pos.y);
+    return screen_pos;
 }
+
+
 
 
 // t_vect2d	isometry_transform(t_point point, t_drawing_params params)

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_create.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 00:50:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/17 09:36:00 by olivier          ###   ########.fr       */
+/*   Created: 2023/04/17 08:46:14 by olivier           #+#    #+#             */
+/*   Updated: 2023/04/17 12:36:24 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../graphics.h"
+#include <stddef.h>
 
-t_pixel	pixel(t_vect3d pos, int color)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_pixel	pixel;
-
-	pixel.pos = pos;
-	pixel.color = color;
-	return (pixel);
+	while (n > 0)
+	{
+		((double *)s)[n - 1] = c;
+		n--;
+	}
+	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:45:47 by olivier           #+#    #+#             */
-/*   Updated: 2023/04/15 00:32:54 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:29:17 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	redraw_map(t_context *context)
 {
     fill_image(context->drw_win->img_wrapper, 0);
+	ft_memset(context->drw_win->img_wrapper->z_buff, -2147483648, context->drw_win->img_wrapper->width * context->drw_win->img_wrapper->height);
     draw_map(context);
     refresh(context->drw_win);
 }

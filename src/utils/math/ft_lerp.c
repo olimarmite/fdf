@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_create.c                                     :+:      :+:    :+:   */
+/*   ft_lerp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 00:50:07 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/17 09:36:00 by olivier          ###   ########.fr       */
+/*   Created: 2023/04/17 09:21:48 by olivier           #+#    #+#             */
+/*   Updated: 2023/04/17 09:23:29 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../graphics.h"
-
-t_pixel	pixel(t_vect3d pos, int color)
+double ft_lerp(int nb1, int nb2, double p)
 {
-	t_pixel	pixel;
-
-	pixel.pos = pos;
-	pixel.color = color;
-	return (pixel);
+    return (nb1 * (1 - p) + nb2 * p);
 }
