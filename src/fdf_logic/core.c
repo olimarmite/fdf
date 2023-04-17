@@ -6,7 +6,7 @@
 /*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:43:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/17 09:40:22 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/18 01:08:20 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	main_graphics(t_context *context)
 		free(context->mlx);
 		exit(1);
 	}
-	context->drawing_params.rot = vect3d(0, 0, 0);
+	context->drawing_params.rot = vect3d(0.785398, -0.614000, 0.523599);
 	context->drawing_params.ratio = 1;
 	context->drawing_params.zoom = calc_zoom_factor(context);//1;//calc_iso_tile_size_fitted(context);
 	context->drawing_params.position = center_position(context);
