@@ -84,17 +84,23 @@ SRCS = \
 			get_next_line_close.c				\
 		)										\
 		$(addprefix vectors/,					\
-			$(addprefix vect2d/,				\
-				vect2d_add.c					\
-				vect2d_multiply.c				\
-				vect2d_divide.c					\
-				vect2d.c						\
+			$(addprefix f_vect2d/,				\
+				f_vect2d_add.c					\
+				f_vect2d_multiply.c				\
+				f_vect2d_divide.c				\
+				f_vect2d.c						\
 			)									\
 			$(addprefix vect3d/,				\
 				vect3d_add.c					\
 				vect3d_multiply.c				\
 				vect3d_divide.c					\
 				vect3d.c						\
+			)									\
+			$(addprefix vect2d/,				\
+				vect2d_add.c					\
+				vect2d_multiply.c				\
+				vect2d_divide.c					\
+				vect2d.c						\
 			)									\
 		)										\
 		$(addprefix strings/,					\

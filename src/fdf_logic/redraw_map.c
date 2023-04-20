@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:45:47 by olivier           #+#    #+#             */
-/*   Updated: 2023/04/17 12:29:17 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/20 21:37:16 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	redraw_map(t_context *context)
 {
-    fill_image(context->drw_win->img_wrapper, 0);
-	ft_memset(context->drw_win->img_wrapper->z_buff, -2147483648, context->drw_win->img_wrapper->width * context->drw_win->img_wrapper->height);
-    draw_map(context);
-    refresh(context->drw_win);
+	fill_image(context->drw_win->img_wrapper, 0);
+	ft_memset(context->drw_win->img_wrapper->z_buff, -2147483648,
+		context->drw_win->img_wrapper->width
+		* context->drw_win->img_wrapper->height);
+	draw_map(context);
+	refresh(context->drw_win);
 }
 
-int		refresh_if_needed(t_context *context)
+int	refresh_if_needed(t_context *context)
 {
 	if (context->is_dirty)
 	{

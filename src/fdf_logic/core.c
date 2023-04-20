@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:43:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/18 01:08:20 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/20 21:36:22 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	draw_line_column(int x, int y, t_vect3d screen_pos, t_context *context)
 	if (y != map.height - 1)
 	{
 		drw_params = context->drawing_params;
-		screen_pos_next = isometry_transform(map.content[y + 1][x], drw_params, vect2d(map.width, map.height));
+		screen_pos_next = isometry_transform(map.content[y + 1][x],
+				drw_params, f_vect2d(map.width, map.height));
 		draw_line(
 			line(pixel(screen_pos, map.content[y][x].color),
 				pixel(screen_pos_next, map.content[y + 1][x].color)),
@@ -41,7 +42,8 @@ void	draw_line_row(int x, int y, t_vect3d screen_pos, t_context *context)
 	if (x != map.width - 1)
 	{
 		drw_params = context->drawing_params;
-		screen_pos_next = isometry_transform(map.content[y][x + 1], drw_params, vect2d(map.width, map.height));
+		screen_pos_next = isometry_transform(map.content[y][x + 1],
+				drw_params, f_vect2d(map.width, map.height));
 		draw_line(
 			line(pixel(screen_pos, map.content[y][x].color),
 				pixel(screen_pos_next, map.content[y][x + 1].color)),
@@ -54,7 +56,8 @@ void	draw_point_line_neighbour(int x, int y, t_context *context)
 	t_vect3d			screen_pos;
 
 	screen_pos = isometry_transform(context->map.content[y][x],
-			context->drawing_params, vect2d(context->map.width, context->map.height));
+			context->drawing_params,
+			f_vect2d(context->map.width, context->map.height));
 	draw_line_column(x, y, screen_pos, context);
 	draw_line_row(x, y, screen_pos, context);
 }
@@ -77,7 +80,6 @@ void	draw_map(t_context *context)
 		}
 		y++;
 	}
-	
 }
 
 void	main_graphics(t_context *context)
@@ -101,9 +103,8 @@ void	main_graphics(t_context *context)
 	}
 	context->drawing_params.rot = vect3d(0.785398, -0.614000, 0.523599);
 	context->drawing_params.ratio = 1;
-	context->drawing_params.zoom = calc_zoom_factor(context);//1;//calc_iso_tile_size_fitted(context);
+	context->drawing_params.zoom = calc_zoom_factor(context);
 	context->drawing_params.position = center_position(context);
 	context->is_dirty = 1;
 	mlx_loop_hook(mlx, refresh_if_needed, context);
 }
-

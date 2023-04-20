@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vect2d_multiply.c                                  :+:      :+:    :+:   */
+/*   f_vect2d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:51:11 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/20 20:27:41 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:30:30 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../utils.h"
 
-t_vect2d	vect2d_multiply(t_vect2d vect1, t_vect2d vect2)
+t_f_vect2d	f_vect2d(double x, double y)
 {
-	t_vect2d	result;
+	t_f_vect2d	result;
 
-	result.x = vect1.x * vect2.x;
-	result.y = vect1.y * vect2.y;
+	result.x = x;
+	result.y = y;
 	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:37:37 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/15 00:33:20 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/20 21:42:39 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,27 @@ static int	on_window_closed(t_context *context)
 	return (0);
 }
 
+static int	rotation_keys(int key, t_context *context)
+{
+	if (key == 113)
+		fdf_rot(vect3d(0.01, 0, 0), context);
+	else if (key == 115)
+		fdf_rot(vect3d(0, 0.01, 0), context);
+	else if (key == 100)
+		fdf_rot(vect3d(0, 0, 0.01), context);
+	else if (key == 119)
+		fdf_rot(vect3d(-0.01, 0, 0), context);
+	else if (key == 120)
+		fdf_rot(vect3d(0, -0.01, 0), context);
+	else if (key == 99)
+		fdf_rot(vect3d(0, 0, -0.01), context);
+	else
+		return (0);
+	return (1);
+}
+
 static int	on_key_pressed(int key, t_context *context)
 {
-//	printf("%i\n", key);
 	if (key == KEY_ESC)
 		fdf_exit(context);
 	else if (key == 97)
@@ -39,18 +57,8 @@ static int	on_key_pressed(int key, t_context *context)
 		fdf_move(1, 0, context);
 	else if (key == 65364)
 		fdf_move(0, 1, context);
-	else if (key == 113)
-		fdf_rot(vect3d(0.01, 0, 0), context);
-	else if (key == 115)
-		fdf_rot(vect3d(0, 0.01, 0), context);
-	else if (key == 100)
-		fdf_rot(vect3d(0, 0, 0.01), context);
-	else if (key == 119)
-		fdf_rot(vect3d(-0.01, 0, 0), context);
-	else if (key == 120)
-		fdf_rot(vect3d(0, -0.01, 0), context);
-	else if (key == 99)
-		fdf_rot(vect3d(0, 0, -0.01), context);
+	else
+		rotation_keys(key, context);
 	return (0);
 }
 

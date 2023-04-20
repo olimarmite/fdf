@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/07 01:24:00 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:24:43 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ int	main(int argc, char **argv)
 // 	int			x;
 // 	t_line		line;
 // 	int			ratio;
-// 	t_vect2d	screen_pos;
-// 	t_vect2d	screen_pos_next;
-// 	t_vect2d	start_pos;
-// 	t_vect2d	tile_size;
+// 	t_f_vect2d	screen_pos;
+// 	t_f_vect2d	screen_pos_next;
+// 	t_f_vect2d	start_pos;
+// 	t_f_vect2d	tile_size;
 
 // 	map = context->map;
 // 	ratio = 1;
@@ -159,8 +159,8 @@ int	main(int argc, char **argv)
 // 			refresh(context->drw_win);
 // 		y++;
 // 	}
-// 	// line.point_a.pos = vect2d(10, 20);
-// 	// line.point_b.pos = vect2d(100, 200);
+// 	// line.point_a.pos = f_vect2d(10, 20);
+// 	// line.point_b.pos = f_vect2d(100, 200);
 // 	// line.point_a.color = 0x0000F0F0;
 // 	// line.point_b.color = 0x00FFFFFF;
 // 	// draw_line(line, context->drw_win->img_wrapper);

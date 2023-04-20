@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lerp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:21:48 by olivier           #+#    #+#             */
-/*   Updated: 2023/04/17 09:23:29 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/20 21:45:19 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-double ft_lerp(int nb1, int nb2, double p)
+double	ft_lerp(int nb1, int nb2, double p)
 {
-    return (nb1 * (1 - p) + nb2 * p);
+	return (nb1 * (1 - p) + nb2 * p);
 }
