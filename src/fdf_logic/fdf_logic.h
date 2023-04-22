@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_logic.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:44:53 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/20 21:37:28 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:14:16 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 void		main_graphics(t_context *context);
 t_f_vect2d	center_position(t_context *context);
-t_f_vect2d	calc_tile_size(t_context *context);
-t_f_vect2d	calc_iso_tile_size_fitted(t_context *context);
 void		draw_map(t_context *context);
 void		redraw_map(t_context *context);
 int			refresh_if_needed(t_context *context);

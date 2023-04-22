@@ -141,7 +141,7 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Wextra -g #-Werror
+CFLAGS = -Wall -Wextra -g -Werror
 
 all: $(NAME)
 

@@ -56,8 +56,7 @@ dkms.conf
 
 # Mallocator
 ft_mallocator
-
-#
+malloc_test
 
 # Binary
 test
