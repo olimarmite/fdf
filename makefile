@@ -15,6 +15,7 @@ TEST_OBJ_DIR 	= $(OBJ_COMMON_DIR)/tests
 
 SRCS = \
 	$(addprefix map/,							\
+		map_create.c							\
 		map_line_add.c							\
 		map_print.c								\
 		point_create.c							\

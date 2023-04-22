@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:06:05 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/11 21:23:37 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/22 19:46:54 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_map
 	t_point	**content;
 }	t_map;
 
+t_map	map_create(int height, int width, t_point **content);
 void	map_print(t_map map);
 int		map_line_add( t_point *line, t_map *map);
 void	map_destroy(t_map *map);

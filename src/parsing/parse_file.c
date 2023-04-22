@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:28:44 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/06 21:34:49 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/22 19:58:48 by olivier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	parse_line(char *line, int y, t_point **returned_line)
 			j++;
 		if (parse_point(line + j, *returned_line + i, i, y) != 0)
 		{
-			free(*returned_line);
+			errmsg("Parse line : line invalid", 0);
 			return (0);
 		}
 		while (ft_isspace(line[j]) == 0 && line[j] != 0)
@@ -106,24 +106,24 @@ int	parse_file(int fd, t_map *map)
 	int		i;
 
 	i = 0;
+	points_line = NULL;
 	line = get_next_line(fd);
-	map->content = NULL;
-	map->height = 0;
-	map->width = count_point(line);
-	while (line != NULL)
+	*map = map_create(0, count_point(line), NULL);
+	if (map->width == 0)
+		errmsg("Error Empty file", 0);
+	else
 	{
-		if (parse_line(line, i, &points_line) != map->width
-			|| map_line_add(points_line, map))
+		while ((parse_line(line, i, &points_line) == map->width)
+			&& (map_line_add(points_line, map) == 0))
 		{
-			errmsg("Parse file -> ", 0);
+			i ++;
 			free(line);
-			free(points_line);
-			map_destroy(map);
-			return (get_next_line_close(fd), 1);
+			line = get_next_line(fd);
+			if (line == NULL)
+				return (0);
 		}
-		free(line);
-		line = get_next_line(fd);
-		i ++;
 	}
-	return (0);
+	free(line);
+	free(points_line);
+	return (map_destroy(map), get_next_line_close(fd), 1);
 }
