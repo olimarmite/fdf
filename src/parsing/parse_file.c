@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:28:44 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/22 19:58:48 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/24 00:37:53 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,40 @@ static int	parse_line(char *line, int y, t_point **returned_line)
 	points_count = count_point(line);
 	*returned_line = malloc(points_count * sizeof(t_point));
 	if (*returned_line == NULL)
-		return (errmsg("Parse line : line invalid", 0), 0);
+		return (errmsg("Parse line malloc error: ", 0), -1);
 	while (i < points_count)
 	{
 		while (ft_isspace(line[j]))
 			j++;
 		if (parse_point(line + j, *returned_line + i, i, y) != 0)
 		{
-			errmsg("Parse line : line invalid", 0);
-			return (0);
+			errmsg("Parse line : line invalid syntax", 0);
+			return (-1);
 		}
 		while (ft_isspace(line[j]) == 0 && line[j] != 0)
 			j++;
 		i++;
 	}
 	return (points_count);
+}
+
+static int	parse_and_add_line_to_map(char *line, int y, t_map *map)
+{
+	t_point	*points_line;
+	int		result;
+
+	result = parse_line(line, y, &points_line);
+	if (result != map->width)
+	{
+		if (result >= 0)
+			errmsg("Invalid map, inconsistant line lenght", 0);
+	}
+	else if (map_line_add(points_line, map) == 0)
+	{
+		return (0);
+	}
+	free(points_line);
+	return (1);
 }
 
 int	parse_file(int fd, t_map *map)
@@ -113,8 +132,7 @@ int	parse_file(int fd, t_map *map)
 		errmsg("Error Empty file", 0);
 	else
 	{
-		while ((parse_line(line, i, &points_line) == map->width)
-			&& (map_line_add(points_line, map) == 0))
+		while (parse_and_add_line_to_map(line, i, map) == 0)
 		{
 			i ++;
 			free(line);
@@ -124,6 +142,7 @@ int	parse_file(int fd, t_map *map)
 		}
 	}
 	free(line);
-	free(points_line);
-	return (map_destroy(map), get_next_line_close(fd), 1);
+	map_destroy(map);
+	get_next_line_close(fd);
+	return (1);
 }
