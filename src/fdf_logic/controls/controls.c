@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:30:04 by olivier           #+#    #+#             */
-/*   Updated: 2023/04/20 21:35:16 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 00:35:29 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,4 @@ void	fdf_rot(t_vect3d angle, t_context *context)
 	context->drawing_params.rot = vect3d_add(context->drawing_params.rot,
 			vect3d_multiply(angle, vect3d(3, 3, 3)));
 	context->is_dirty = 1;
-	printf("%f %f %f\n", context->drawing_params.rot.x,
-		context->drawing_params.rot.y, context->drawing_params.rot.z);
 }

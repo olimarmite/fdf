@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 22:30:48 by olimarti          #+#    #+#             */
-/*   Updated: 2023/03/28 07:20:56 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 00:38:00 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include "../utils/utils.h"
 
 # define DEFAULT_COLOR 0x00FFFFFF
-//# define HEX_UC_ALPHABET "0123456789ABCDEF"
-//# define HEX_UC_ALPHABET "0123456789abcdef"
 
 int	parse_file(int fd, t_map *map);
 

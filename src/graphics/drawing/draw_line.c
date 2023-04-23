@@ -6,17 +6,17 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 01:19:00 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/20 21:31:40 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 00:37:00 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../graphics.h"
 
-#define INSIDE 0 // Inside the view
-#define LEFT 1   // Left boundary of the view
-#define RIGHT 2  // Right boundary of the view
-#define BOTTOM 4 // Bottom boundary of the view
-#define TOP 8    // Top boundary of the view
+#define INSIDE 0
+#define LEFT 1
+#define RIGHT 2
+#define BOTTOM 4
+#define TOP 8
 
 static int	point_in_view(t_vect3d pixel, t_image_wrapper *img)
 {
@@ -34,7 +34,6 @@ static int	point_in_view(t_vect3d pixel, t_image_wrapper *img)
 	return (code);
 }
 
-// Function to check if a line is fully outside the view
 static int	is_line_outside(t_line line, t_image_wrapper *img)
 {
 	int	outcode0;

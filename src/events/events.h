@@ -6,14 +6,13 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 00:50:15 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/07 01:14:24 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 00:37:15 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENTS_H
 # define EVENTS_H
 
-//X11 events mask
 # define STRUCTURE_NOTIFY_MASK 0b100000000000000000L
 # define DESTROY_NOTIFY_EVENT 17
 # define KEYPRESS_MASK 1L
