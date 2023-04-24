@@ -84,6 +84,24 @@ SRCS = \
 			get_next_line.c						\
 			get_next_line_close.c				\
 		)										\
+		$(addprefix	printf/,					\
+			ft_printf.c							\
+			$(addprefix	utils/,					\
+				ft_putstr.c						\
+				ft_putchar.c					\
+				ft_putnbr_base.c				\
+				ft_u_putnbr_base.c				\
+			)									\
+			$(addprefix	printers/,				\
+				ft_printf_percent.c				\
+				ft_printf_str.c					\
+				ft_printf_u_int.c				\
+				ft_printf_int.c					\
+				ft_printf_chr.c					\
+				ft_printf_ptr.c					\
+				ft_printf_hex.c					\
+			)									\
+		)										\
 		$(addprefix vectors/,					\
 			$(addprefix f_vect2d/,				\
 				f_vect2d_add.c					\
@@ -142,7 +160,8 @@ CC = cc
 RM = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Wextra -g -Werror
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -g -O3
 
 all: $(NAME)
 

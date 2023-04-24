@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:47:16 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/20 21:37:58 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:07:33 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include "printf/ft_printf.h"
 
 typedef struct s_f_vect2d
 {

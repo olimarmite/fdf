@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivier <olivier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/22 20:11:24 by olivier          ###   ########.fr       */
+/*   Updated: 2023/04/24 23:06:38 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	main(int argc, char **argv)
 		ft_fatal_error("Can't open map file", 0);
 	if (parse_file(fd, &context.map) != 0)
 		return (1);
-	map_print(context.map);
 	main_graphics(&context);
 	register_close_events(&context);
 	mlx_loop(context.mlx);
