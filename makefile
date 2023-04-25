@@ -161,7 +161,7 @@ RM = rm -rf
 MKDIR = mkdir -p
 
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -g -O3
+#CFLAGS += -g -Ofast
 
 all: $(NAME)
 
