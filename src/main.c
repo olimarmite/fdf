@@ -6,7 +6,7 @@
 /*   By: olimarti <olimarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 00:00:31 by olimarti          #+#    #+#             */
-/*   Updated: 2023/04/24 23:06:38 by olimarti         ###   ########.fr       */
+/*   Updated: 2023/04/26 00:52:50 by olimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		ft_fatal_error("Can't open map file", 0);
 	if (parse_file(fd, &context.map) != 0)
-		return (1);
+		return (close(fd), 1);
+	close(fd);
 	main_graphics(&context);
 	register_close_events(&context);
 	mlx_loop(context.mlx);
